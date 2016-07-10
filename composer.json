@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "S3ChangeAcl\\": "src/"
+        }
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3.18",
+        "symfony/console": "^3.1"
+    }
+}
