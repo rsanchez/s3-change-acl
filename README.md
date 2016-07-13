@@ -8,6 +8,8 @@ Command-line utility to batch change the ACL to for all files in an Amazon S3 bu
 composer require rsanchez/s3-change-acl
 ```
 
+Or [download the phar](https://github.com/rsanchez/s3-change-acl/releases/latest).
+
 ## Usage
 
 ### Change all files to public-read ACL
