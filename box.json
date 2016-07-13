@@ -1,10 +1,8 @@
 {
     "chmod": "0755",
+    "compression": "GZ",
     "directories": ["src"],
     "extract": false,
-    "files": [
-        "vendor/autoload.php"
-    ],
     "finder": [
         {
             "name": "*.php",
