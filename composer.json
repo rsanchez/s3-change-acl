@@ -1,9 +1,20 @@
 {
+    "name": "rsanchez/s3-change-acl",
+    "description": "Command-line utility to batch change the ACL for all files in an Amazon S3 bucket.",
+    "authors": [
+        {
+            "name": "Rob Sanchez",
+            "email": "info@robsanchez.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "S3ChangeAcl\\": "src/"
         }
     },
+    "bin": [
+        "bin/s3-change-acl"
+    ],
     "require": {
         "aws/aws-sdk-php": "^3.18",
         "symfony/console": "^3.1"
