@@ -1,0 +1,18 @@
+{
+    "chmod": "0755",
+    "directories": ["src"],
+    "extract": false,
+    "files": [
+        "vendor/autoload.php"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "in": "vendor"
+        }
+    ],
+    "main": "bin/s3-change-acl",
+    "output": "s3-change-acl.phar",
+    "stub": "src/stub.php",
+    "web": false
+}
