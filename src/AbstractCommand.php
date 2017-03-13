@@ -28,7 +28,7 @@ abstract class AbstractCommand extends Command
         $this->addArgument('access-key', InputArgument::OPTIONAL, 'AWS Access Key');
         $this->addArgument('secret-key', InputArgument::OPTIONAL, 'AWS Secret Key');
         $this->addArgument('region', InputArgument::OPTIONAL, 'S3 Region', 'us-east-1');
-        $this->addOption('prefix', InputOption::VALUE_REQUIRED, 'Set ACL of only those objects whose keys begin with the specified prefix.');
+        $this->addOption('prefix', 'p', InputOption::VALUE_REQUIRED, 'Set ACL of only those objects whose keys begin with the specified prefix.');
     }
 
     /**
