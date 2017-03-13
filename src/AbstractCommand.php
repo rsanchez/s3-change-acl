@@ -28,6 +28,7 @@ abstract class AbstractCommand extends Command
         $this->addArgument('access-key', InputArgument::OPTIONAL, 'AWS Access Key');
         $this->addArgument('secret-key', InputArgument::OPTIONAL, 'AWS Secret Key');
         $this->addArgument('region', InputArgument::OPTIONAL, 'S3 Region', 'us-east-1');
+        $this->addOption('prefix', InputOption::VALUE_REQUIRED, 'Set ACL of only those objects whose keys begin with the specified prefix.');
     }
 
     /**
@@ -43,14 +44,22 @@ abstract class AbstractCommand extends Command
             putenv('AWS_SECRET_ACCESS_KEY='.$input->getArgument('secret-key'));
         }
 
+        $prefix = $input->getOption('prefix');
+
         $client = new S3Client([
             'version' => 'latest',
             'region'  => $input->getArgument('region'),
         ]);
 
-        $result = $client->listObjects([
+        $listObjectsArgs = [
             'Bucket' => $input->getArgument('bucket'),
-        ]);
+        ];
+
+        if ($prefix) {
+            $listObjectsArgs['Prefix'] = $prefix;
+        }
+
+        $result = $client->listObjects($listObjectsArgs);
 
         $total = count($result['Contents']);
 
@@ -67,10 +76,16 @@ abstract class AbstractCommand extends Command
                 ]);
             }
 
-            $result = $client->listObjects([
+            $listObjectsArgs = [
                 'Bucket' => $input->getArgument('bucket'),
                 'Marker' => $object['Key'],
-            ]);
+            ];
+
+            if ($prefix) {
+                $listObjectsArgs['Prefix'] = $prefix;
+            }
+
+            $result = $client->listObjects($listObjectsArgs);
 
             $total = count($result['Contents']);
         }
