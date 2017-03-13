@@ -1,7 +1,25 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+$autoloadPaths = [
+    __DIR__.'/../vendor/autoload.php',
+    __DIR__.'/../../../autoload.php',//cgr
+];
+
+$foundAutoloader = null;
+
+foreach ($autoloadPaths as $autoloadPath) {
+    if (file_exists($autoloadPath)) {
+        $foundAutoloader = $autoloadPath;
+        break;
+    }
+}
+
+if (!$foundAutoloader) {
+    throw new Exception('Could not find composer autoloader.');
+}
+
+require_once $foundAutoloader;
 
 $app = new Symfony\Component\Console\Application();
 
